@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>إليكِ</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Georgia,"Times New Roman",system-ui,sans-serif;background:#070b18}
+button{font:inherit}
+#intro{
+height:100%;display:flex;align-items:center;justify-content:center;
+text-align:center;padding:28px;
+background:
+radial-gradient(circle at 50% 38%,rgba(255,220,230,.8),transparent 28%),
+linear-gradient(160deg,#fffdfd 0%,#fff0f5 48%,#f9dfe9 100%);
+position:relative;overflow:hidden
+}
+#intro:before,#intro:after{
+content:"";position:absolute;border-radius:50%;filter:blur(25px);opacity:.45
+}
+#intro:before{width:220px;height:220px;background:#f7b8ca;top:-80px;left:-70px}
+#intro:after{width:260px;height:260px;background:#eec4d4;bottom:-120px;right:-80px}
+.card{position:relative;z-index:2;max-width:700px}
+.card h1{margin:0 0 36px;font-size:clamp(34px,8vw,62px);line-height:1.15;color:#7e304d;font-weight:700;text-shadow:0 2px 14px #8d31551c}
+.enter{
+border:1px solid #ffffff88;border-radius:999px;padding:15px 34px;min-height:52px;
+background:linear-gradient(135deg,#c95379,#a9355c);color:#fff;font-weight:700;font-size:19px;
+box-shadow:0 12px 30px #8c315233;cursor:pointer
+}
+#night{height:100%;position:relative;overflow:hidden;cursor:pointer;touch-action:manipulation;
+background:
+radial-gradient(ellipse at 50% 20%,rgba(100,126,180,.35),transparent 42%),
+linear-gradient(to bottom,#020817 0%,#07152c 42%,#0b2030 70%,#101c24 100%)}
+#night:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-8%;height:30%;
+background:linear-gradient(180deg,transparent,#071016 35%,#04080b 100%);
+border-radius:50% 50% 0 0;opacity:.9;pointer-events:none}
+.stars{position:absolute;inset:0;background-image:
+radial-gradient(circle at 10% 20%,#fff 0 1px,transparent 1.8px),
+radial-gradient(circle at 70% 13%,#fff 0 1.2px,transparent 2px),
+radial-gradient(circle at 35% 31%,#fff 0 .8px,transparent 1.7px);
+background-size:170px 130px,230px 170px,120px 100px;opacity:.72}
+.moon{position:absolute;right:9%;top:8%;width:92px;height:92px;border-radius:50%;
+background:radial-gradient(circle at 36% 34%,#fffef0,#fff7ce 62%,#e9db9e);
+box-shadow:0 0 28px #fff5c988,0 0 90px #cddaff22}
+.moon:after{content:"";position:absolute;width:15px;height:10px;border-radius:50%;background:#d9ce9b55;left:25px;top:30px;transform:rotate(-18deg)}
+.hint{position:absolute;top:22px;left:0;right:0;text-align:center;color:#dce6f5cc;font-size:14px;z-index:5;text-shadow:0 2px 8px #000}
+#flowers{position:absolute;inset:0;z-index:3;pointer-events:none}
+.float{
+position:absolute;bottom:-80px;will-change:transform;filter:drop-shadow(0 5px 6px #0007);
+animation:rise linear forwards
+}
+.float .petal{display:block;font-size:var(--size);transform:rotate(var(--rot));filter:saturate(.88)}
+@keyframes rise{
+0%{transform:translate3d(0,0,0) rotate(0);opacity:0}
+8%{opacity:.95}
+45%{transform:translate3d(var(--x),-48vh,0) rotate(8deg)}
+100%{transform:translate3d(calc(var(--x)*-0.35),-120vh,0) rotate(-16deg);opacity:0}
+}
+.touch-flower{
+position:absolute;transform:translate(-50%,-100%);width:130px;height:160px;
+animation:touchFade 2.4s ease-out forwards;filter:drop-shadow(0 7px 7px #0008)
+}
+.touch-stem{
+position:absolute;left:50%;bottom:5px;width:5px;height:105px;border-radius:5px;
+background:linear-gradient(90deg,#315d36,#82a75f,#294c30);transform-origin:bottom;
+animation:stem .55s ease-out
+}
+.leaf{position:absolute;width:33px;height:15px;background:linear-gradient(135deg,#345d37,#91a96b);
+border-radius:100% 0 100% 0}
+.leaf.l{left:42px;bottom:45px;transform:rotate(24deg)}
+.leaf.r{right:40px;bottom:67px;transform:scaleX(-1) rotate(24deg)}
+.realrose{
+position:absolute;left:50%;top:45px;width:74px;height:74px;transform:translateX(-50%);
+border-radius:52% 48% 45% 55%;
+background:
+radial-gradient(ellipse at 52% 54%,#5b0c25 0 9%,transparent 10%),
+radial-gradient(ellipse at 50% 35%,#f6a0b7 0 16%,#c72e5d 17% 35%,transparent 36%),
+radial-gradient(ellipse at 30% 55%,#e85b82 0 24%,transparent 25%),
+radial-gradient(ellipse at 72% 56%,#f27b9b 0 24%,transparent 25%),
+radial-gradient(ellipse at 50% 72%,#9e1f49 0 27%,transparent 28%),
+radial-gradient(circle,#e34b78,#8e1740);
+box-shadow:0 4px 13px #0008,0 0 20px #e56b8d33;animation:rose .55s ease-out
+}
+.realrose:before,.realrose:after{content:"";position:absolute;inset:7px;border-radius:50%;border:4px solid #f8a2b7aa;transform:rotate(25deg)}
+.realrose:after{inset:15px;border-color:#6f1238aa;transform:rotate(-32deg)}
+.word{
+position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+white-space:nowrap;color:#fff5f8;font-size:19px;font-weight:700;
+text-shadow:0 2px 10px #000;animation:word .55s ease-out
+}
+.kiss{position:absolute;font-size:var(--s);animation:kiss 1.5s ease-out forwards;filter:drop-shadow(0 3px 4px #0008)}
+@keyframes stem{from{height:0}to{height:105px}}
+@keyframes rose{from{transform:translateX(-50%) scale(.2) rotate(-15deg);opacity:.2}to{transform:translateX(-50%) scale(1);opacity:1}}
+@keyframes word{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes touchFade{0%,65%{opacity:1}100%{opacity:0;transform:translate(-50%,-110%) scale(1.04)}}
+@keyframes kiss{0%{opacity:0;transform:scale(.3) translateY(20px)}15%{opacity:1}100%{opacity:0;transform:scale(1.15) translateY(-100px) rotate(12deg)}}
+@media(prefers-reduced-motion:reduce){.float,.touch-flower,.kiss{animation:none}.float{display:none}}
+</style>
+</head>
+<body>
+<section id="intro">
+  <div class="card">
+    <h1>أعتذر على ما حدث أمس</h1>
+    <button class="enter" id="enter">اضغطي هنا</button>
+  </div>
+</section>
+
+<noscript><div style="padding:30px;text-align:center">يرجى تفعيل JavaScript لعرض التجربة التفاعلية.</div></noscript>
+<section id="night" hidden>
+  <div class="stars"></div>
+  <div class="moon"></div>
+  <div class="hint">اضغطي في أي مكان في السماء ✨</div>
+  <div id="flowers"></div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  function ready() {
+    var intro = document.getElementById("intro");
+    var night = document.getElementById("night");
+    var enter = document.getElementById("enter");
+    var layer = document.getElementById("flowers");
+    var words = ["لامورتي","حبي","عمري","حياتي","قلبي"];
+    var wi = 0;
+
+    if (!intro || !night || !enter || !layer) return;
+
+    function openNight(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      intro.style.display = "none";
+      night.hidden = false;
+      night.style.display = "block";
+      spawnFloaters();
+    }
+
+    // Both click and touchend make the first action reliable on phones/in-app browsers.
+    enter.onclick = openNight;
+    enter.ontouchend = openNight;
+
+    var started = false;
+    function spawnFloaters() {
+      if (started) return;
+      started = true;
+
+      window.setInterval(function () {
+        var el = document.createElement("div");
+        el.className = "float";
+        el.innerHTML = '<span class="petal">' + (Math.random() < 0.72 ? "🌹" : "🌷") + "</span>";
+        el.style.left = (Math.random() * 105 - 2) + "%";
+        el.style.setProperty("--x", (Math.random() * 150 - 75) + "px");
+        el.style.setProperty("--rot", (Math.random() * 45 - 22) + "deg");
+        el.style.setProperty("--size", (22 + Math.random() * 22) + "px");
+        el.style.animationDuration = (6 + Math.random() * 6) + "s";
+        layer.appendChild(el);
+        window.setTimeout(function () { if (el.parentNode) el.remove(); }, 13000);
+      }, 650);
+
+      window.setInterval(function () {
+        if (Math.random() < 0.65) {
+          var k = document.createElement("div");
+          k.className = "kiss";
+          k.textContent = "💋";
+          k.style.left = (10 + Math.random() * 80) + "%";
+          k.style.bottom = (12 + Math.random() * 30) + "%";
+          k.style.setProperty("--s", (20 + Math.random() * 18) + "px");
+          layer.appendChild(k);
+          window.setTimeout(function () { if (k.parentNode) k.remove(); }, 1700);
+        }
+      }, 1500);
+    }
+
+    function makeFlower(e) {
+      if (night.hidden) return;
+      var rect = night.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+
+      var f = document.createElement("div");
+      f.className = "touch-flower";
+      f.style.left = x + "px";
+      f.style.top = y + "px";
+      f.innerHTML =
+        '<div class="word">' + words[wi++ % words.length] + '</div>' +
+        '<div class="realrose"></div><div class="touch-stem"></div>' +
+        '<div class="leaf l"></div><div class="leaf r"></div>';
+      layer.appendChild(f);
+
+      if (Math.random() < 0.5) {
+        var k = document.createElement("div");
+        k.className = "kiss";
+        k.textContent = "💋";
+        k.style.left = (x - 15) + "px";
+        k.style.top = (y - 70) + "px";
+        k.style.setProperty("--s", "26px");
+        layer.appendChild(k);
+        window.setTimeout(function () { if (k.parentNode) k.remove(); }, 1600);
+      }
+      window.setTimeout(function () { if (f.parentNode) f.remove(); }, 2500);
+    }
+
+    night.addEventListener("pointerdown", makeFlower, { passive: true });
+    night.addEventListener("touchstart", function (e) {
+      if (e.touches && e.touches[0]) makeFlower(e.touches[0]);
+    }, { passive: true });
+    night.addEventListener("click", function (e) {
+      // Fallback for browsers without Pointer Events.
+      if (!window.PointerEvent) makeFlower(e);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ready);
+  } else {
+    ready();
+  }
+})();
+</script>
+</body>
+</html>
